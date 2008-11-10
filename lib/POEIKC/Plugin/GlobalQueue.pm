@@ -2,7 +2,7 @@ package POEIKC::Plugin::GlobalQueue;
 
 use strict;
 use 5.008_001;
-our $VERSION = '0.00_01';
+our $VERSION = '0.01';
 
 use Data::Dumper;
 use Class::Inspector;

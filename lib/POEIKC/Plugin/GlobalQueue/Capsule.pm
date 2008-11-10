@@ -2,7 +2,7 @@ package POEIKC::Plugin::GlobalQueue::Capsule;
 
 use strict;
 use 5.008_001;
-our $VERSION = '0.00_01';
+our $VERSION = '0.01';
 use base qw(Class::Accessor::Fast);
 
 __PACKAGE__->mk_accessors(qw/createTime expireTime substance tag gqId/);
@@ -50,7 +50,7 @@ POEIKC::Plugin::GlobalQueue::Capsule - The container of data
 			BBB=>'bbb',
 		},
 		tag=>'tagName',
-		expireTime=>60, # second 
+		expireTime=>60, # second
 	);
 
 

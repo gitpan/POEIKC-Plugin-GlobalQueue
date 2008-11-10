@@ -2,7 +2,7 @@ package POEIKC::Plugin::GlobalQueue::ClientLite;
 
 use strict;
 use 5.008_001;
-our $VERSION = '0.00_01';
+our $VERSION = '0.01';
 use Sys::Hostname ();
 use POE::Component::IKC::ClientLite;
 
@@ -107,7 +107,7 @@ POEIKC::Plugin::GlobalQueue::ClientLite - Synchronous interface
 
 	my $gq = POEIKC::Plugin::GlobalQueue::ClientLite->new(
 		ip		=> global_queue_server_host_name,
-		port	=> 47301, 
+		port	=> 47301,
 		timeout	=> 3,
 		RaiseError => 1,
 	);
