@@ -2,7 +2,7 @@ package POEIKC::Plugin::GlobalQueue;
 
 use strict;
 use 5.008_001;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Data::Dumper;
 use Class::Inspector;
@@ -12,7 +12,7 @@ use POE qw(
 	Component::IKC::Client
 );
 
-use POEIKC::Plugin::GlobalQueue::Capsule;
+use POEIKC::Plugin::GlobalQueue::Message;
 use POEIKC::Daemon::Utility;
 
 sub spawn
@@ -80,8 +80,8 @@ sub globalQueueClean {
 	POEIKC::Daemon::Utility::_DEBUG_log(\@tags);
 	for my $tag(@tags) {
 		my @tmparray;
-		while (my $capsule = shift @{$object->{tag}->{$tag}}) {
-			push @tmparray, $capsule->expire;
+		while (my $message = shift @{$object->{tag}->{$tag}}) {
+			push @tmparray, $message->expire;
 		}
 		POEIKC::Daemon::Utility::_DEBUG_log(\@tmparray);
 		@{$object->{tag}->{$tag}} = @tmparray;
@@ -104,18 +104,18 @@ sub enqueue {
 	my $poe = sweet_args;
 	my $kernel = $poe->kernel;
 	my $object  = $poe->object ;
-	my ($capsule) = @{$poe->args};
+	my ($message) = @{$poe->args};
 	$object->{count}++;
-	#my $substance = delete $capsule->{substance};
-	POEIKC::Daemon::Utility::_DEBUG_log($capsule);
+	#my $substance = delete $message->{substance};
+	POEIKC::Daemon::Utility::_DEBUG_log($message);
 	eval {
-	$capsule = POEIKC::Plugin::GlobalQueue::Capsule->new(
-		undef ,%{$capsule}, gqId=>$object->{count});
+	$message = POEIKC::Plugin::GlobalQueue::Message->new(
+		undef ,%{$message}, gqId=>$object->{count});
 	};if($@){
 		return $@;
 	}
-	my $tag = $capsule->tag;
-	push @{$object->{tag}->{$tag}}, $capsule;
+	my $tag = $message->tag;
+	push @{$object->{tag}->{$tag}}, $message;
 	scalar @{$object->{tag}->{$tag}};
 }
 
@@ -226,7 +226,7 @@ it under the same terms as Perl itself.
 =head1 SEE ALSO
 
 L<poeikcd>
-L<POEIKC::Plugin::GlobalQueue::Capsule>
+L<POEIKC::Plugin::GlobalQueue::Message>
 L<POEIKC::Plugin::GlobalQueue::ClientLite>
 
 =cut

@@ -1,5 +1,9 @@
 Revision history for Perl extension POEIKC::Plugin::GlobalQueue
 
+0.03     Thu Oct 15 2009
+        - A module name change.
+          POEIKC::Plugin::GlobalQueue::Capsule --> POEIKC::Plugin::GlobalQueue::Message
+
 0.02     Fri Dec 12 2008
         - Skips tests if poeikcd (POEIKC::Daemon) is not installed.
 

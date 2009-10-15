@@ -12,7 +12,7 @@ plan skip_all => "poeikcd is not installed." if $path !~ /poeikcd version/ ;
 plan tests => 5;
 
 
-use POEIKC::Plugin::GlobalQueue::Capsule;
+use POEIKC::Plugin::GlobalQueue::Message;
 use POEIKC::Plugin::GlobalQueue::ClientLite;
 
 my $cmd = `poeikcd start -I=lib -M=POEIKC::Plugin::GlobalQueue -n=GlobalQueue -a=QueueServer -p=47301 -s`;
@@ -26,13 +26,13 @@ sleep 1;
 my $gq = POEIKC::Plugin::GlobalQueue::ClientLite->new(port=>47301);
 ok $gq, Dumper($gq);
 
-my $capsule = POEIKC::Plugin::GlobalQueue::Capsule->new(
+my $message = POEIKC::Plugin::GlobalQueue::Message->new(
 	$substance,
 	tag=>'tagName',
 	expireTime=>3
 );
 
-my $re = $gq->enqueue($capsule);
+my $re = $gq->enqueue($message);
 ok $re, Dumper($re);
 
 $cmd = `poikc  --alias=QueueServer --port=47301 GlobalQueue dump`;

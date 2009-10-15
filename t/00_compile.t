@@ -7,6 +7,6 @@ SKIP: {
 	use_ok 'POEIKC::Plugin::GlobalQueue';
 }
 
-BEGIN { use_ok 'POEIKC::Plugin::GlobalQueue::Capsule' }
+BEGIN { use_ok 'POEIKC::Plugin::GlobalQueue::Message' }
 BEGIN { use_ok 'POEIKC::Plugin::GlobalQueue::ClientLite' }
 

@@ -12,7 +12,7 @@ plan skip_all => "poeikcd is not installed." if $path !~ /poeikcd version/ ;
 plan tests => 11;
 
 
-use POEIKC::Plugin::GlobalQueue::Capsule;
+use POEIKC::Plugin::GlobalQueue::Message;
 use POEIKC::Plugin::GlobalQueue::ClientLite;
 
 my $cmd;
@@ -25,10 +25,10 @@ my $gq = POEIKC::Plugin::GlobalQueue::ClientLite->new(port=>47301);
 ok $gq, Dumper($gq);
 
 my $re;
-$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Capsule->new({AAA=>'aaa',BBB=>'bbb',},tag=>'tagName1',));
-$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Capsule->new({CCC=>'ccc',DDD=>'ddd',},tag=>'tagName1',));
-$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Capsule->new({EEE=>'eee',FFF=>'fff',},tag=>'tagName1',));
-$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Capsule->new({IROHA=>'iroha',AIU=>'AIU',},tag=>'tagName2',));
+$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Message->new({AAA=>'aaa',BBB=>'bbb',},tag=>'tagName1',));
+$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Message->new({CCC=>'ccc',DDD=>'ddd',},tag=>'tagName1',));
+$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Message->new({EEE=>'eee',FFF=>'fff',},tag=>'tagName1',));
+$re = $gq->enqueue(POEIKC::Plugin::GlobalQueue::Message->new({IROHA=>'iroha',AIU=>'AIU',},tag=>'tagName2',));
 
 $cmd = `poikc  --alias=QueueServer --port=47301 GlobalQueue length`;
 ok $cmd, ($cmd);

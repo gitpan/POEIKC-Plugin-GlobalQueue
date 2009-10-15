@@ -1,4 +1,4 @@
-package POEIKC::Plugin::GlobalQueue::Capsule;
+package POEIKC::Plugin::GlobalQueue::Message;
 
 use strict;
 use 5.008_001;
@@ -38,13 +38,13 @@ __END__
 
 =head1 NAME
 
-POEIKC::Plugin::GlobalQueue::Capsule - The container of data
+POEIKC::Plugin::GlobalQueue::Message - The container of data
 
 =head1 SYNOPSIS
 
-	use POEIKC::Plugin::GlobalQueue::Capsule;
+	use POEIKC::Plugin::GlobalQueue::Message;
 
-	my $capsule = POEIKC::Plugin::GlobalQueue::Capsule->new(
+	my $message = POEIKC::Plugin::GlobalQueue::Message->new(
 		{
 			AAA=>'aaa',
 			BBB=>'bbb',
