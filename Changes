@@ -1,5 +1,8 @@
 Revision history for Perl extension POEIKC::Plugin::GlobalQueue
 
+0.04     Sun Oct 18 2009
+        - made the return value of the spawn method an object.
+
 0.03     Thu Oct 15 2009
         - A module name change.
           POEIKC::Plugin::GlobalQueue::Capsule --> POEIKC::Plugin::GlobalQueue::Message

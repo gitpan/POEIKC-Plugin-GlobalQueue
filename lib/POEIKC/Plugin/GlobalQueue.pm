@@ -2,7 +2,7 @@ package POEIKC::Plugin::GlobalQueue;
 
 use strict;
 use 5.008_001;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Data::Dumper;
 use Class::Inspector;
@@ -29,7 +29,7 @@ sub spawn
 	my $session = POE::Session->create(
 	    object_states => [ $self =>  Class::Inspector->methods(__PACKAGE__) ]
 	);
-	return $session->ID;
+	return $self;
 }
 
 
